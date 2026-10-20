@@ -1,0 +1,27 @@
+{
+	"name": "microgulp-recipe-nas-backup",
+	"version": "2.2.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"backup": "node cli.mjs",
+		"test": "node --test tests/*.test.mjs",
+		"check": "node tools/Check.mjs",
+		"release:check": "node tools/RecipeRelease.mjs --check",
+		"release:sync": "node tools/RecipeRelease.mjs --sync",
+		"release:version": "node tools/RecipeRelease.mjs --version",
+		"release:history": "node tools/RecipeRelease.mjs --history",
+		"pretest": "npm run release:check"
+	},
+	"devDependencies": {
+		"gulp": "5.0.1",
+		"gulp-mu-gulp-api": "file:vendor/gulp-mu-gulp-api-0.8.0.tgz"
+	},
+	"dependencies": {
+		"yauzl": "3.4.0",
+		"yazl": "3.3.1"
+	}
+}

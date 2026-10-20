@@ -1,0 +1,63 @@
+{
+	"schemaVersion": 1,
+	"projectId": "my-project",
+	"source": ".",
+	"engine": "auto",
+	"timeoutMs": 3600000,
+	"features": {
+		"git": true,
+		"dynamicDisplayName": true,
+		"editTargetPaths": true,
+		"continueOnError": true,
+		"dryRunDefault": true
+	},
+	"exclusions": {
+		"directoryNames": [
+			".cache"
+		],
+		"relativePaths": [
+			"build",
+			"dev/out"
+		],
+		"fileNames": [
+			"Thumbs.db",
+			".DS_Store",
+			"desktop.ini"
+		]
+	},
+	"targets": [
+		{
+			"id": "primary",
+			"label": "NAS 1",
+			"path": "\\\\nas-one\\backup\\my-project",
+			"selected": true
+		},
+		{
+			"id": "secondary",
+			"label": "NAS 2",
+			"path": "\\\\nas-two\\backup\\my-project",
+			"selected": false
+		},
+		{
+			"id": "archive",
+			"label": "Archive",
+			"path": "\\\\nas-three\\backup\\my-project",
+			"selected": false
+		}
+	],
+	"displayName": {
+		"version": true,
+		"commit": false,
+		"changes": false,
+		"lastBackup": false
+	},
+	"backup": {
+		"mode": "fixed",
+		"format": "directory"
+	},
+	"schedule": {
+		"enabled": false,
+		"cron": "0 2 * * *",
+		"dryRun": true
+	}
+}

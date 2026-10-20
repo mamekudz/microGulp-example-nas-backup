@@ -1,0 +1,18 @@
+{
+	"gulpfile": "gulpfile.mjs",
+	"metadataWatchFiles": [
+		"package.json",
+		"RELEASES.json",
+		"nas-backup.local.json",
+		".microgulp/nas-backup-schedule.json"
+	],
+	"versionSources": [
+		"RELEASES.json",
+		"package.json"
+	],
+	"project": {
+		"title": "µGulp Example: NAS Backup",
+		"description": "µGulp Recipes - nas-backup",
+		"logo": "./assets/microgulp-logo.png"
+	}
+}

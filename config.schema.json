@@ -1,0 +1,196 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"title": "µGulp NAS backup configuration",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"schemaVersion",
+		"projectId",
+		"source",
+		"engine",
+		"timeoutMs",
+		"features",
+		"exclusions",
+		"targets"
+	],
+	"properties": {
+		"schemaVersion": {
+			"const": 1
+		},
+		"projectId": {
+			"type": "string",
+			"pattern": "^[a-z][a-z0-9-]{0,63}$"
+		},
+		"source": {
+			"type": "string",
+			"minLength": 1,
+			"pattern": "^[^\\u0000-\\u001f]+$"
+		},
+		"engine": {
+			"enum": [
+				"auto",
+				"node",
+				"robocopy",
+				"rsync"
+			]
+		},
+		"timeoutMs": {
+			"type": "integer",
+			"minimum": 1000,
+			"maximum": 86400000
+		},
+		"features": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"git",
+				"dynamicDisplayName",
+				"editTargetPaths",
+				"continueOnError",
+				"dryRunDefault"
+			],
+			"properties": {
+				"git": {
+					"type": "boolean"
+				},
+				"dynamicDisplayName": {
+					"type": "boolean"
+				},
+				"editTargetPaths": {
+					"type": "boolean"
+				},
+				"continueOnError": {
+					"type": "boolean"
+				},
+				"dryRunDefault": {
+					"type": "boolean"
+				}
+			}
+		},
+		"exclusions": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"directoryNames",
+				"relativePaths",
+				"fileNames"
+			],
+			"properties": {
+				"directoryNames": {
+					"type": "array",
+					"uniqueItems": true,
+					"items": {
+						"type": "string",
+						"minLength": 1,
+						"pattern": "^(?!\\.{1,2}$)[^/\\\\:*?\"<>|\\u0000-\\u001f]+$"
+					}
+				},
+				"relativePaths": {
+					"type": "array",
+					"uniqueItems": true,
+					"items": {
+						"type": "string",
+						"minLength": 1,
+						"pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[/]$)[^\\\\:*?\"<>|\\u0000-\\u001f]+$"
+					}
+				},
+				"fileNames": {
+					"type": "array",
+					"uniqueItems": true,
+					"items": {
+						"type": "string",
+						"minLength": 1,
+						"pattern": "^(?!\\.{1,2}$)[^/\\\\:*?\"<>|\\u0000-\\u001f]+$"
+					}
+				}
+			}
+		},
+		"targets": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "object",
+				"additionalProperties": false,
+				"required": [
+					"id",
+					"label",
+					"path",
+					"selected"
+				],
+				"properties": {
+					"id": {
+						"type": "string",
+						"pattern": "^[a-z][a-z0-9-]{0,63}$"
+					},
+					"label": {
+						"type": "string",
+						"minLength": 1,
+						"pattern": "^[^\\u0000-\\u001f]+$"
+					},
+					"path": {
+						"type": "string",
+						"minLength": 1,
+						"pattern": "^[^\\u0000-\\u001f]+$",
+						"description": "Absolute native platform path; checked again at runtime."
+					},
+					"selected": {
+						"type": "boolean"
+					}
+				}
+			}
+		},
+		"displayName": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"version": {
+					"type": "boolean",
+					"default": true
+				},
+				"commit": {
+					"type": "boolean",
+					"default": false
+				},
+				"changes": {
+					"type": "boolean",
+					"default": false
+				},
+				"lastBackup": {
+					"type": "boolean",
+					"default": false
+				}
+			}
+		},
+		"backup": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"mode": {
+					"enum": [
+						"fixed",
+						"snapshots"
+					],
+					"default": "fixed"
+				},
+				"format": {
+					"enum": [
+						"directory",
+						"zip"
+					],
+					"default": "directory"
+				}
+			}
+		},
+		"schedule": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["enabled", "cron", "dryRun"],
+			"properties": {
+				"enabled": { "type": "boolean", "default": false },
+				"cron": { "type": "string", "pattern": "^(?:\\*|[0-9]+(?:-[0-9]+)?)(?:/[0-9]+)?(?:,(?:\\*|[0-9]+(?:-[0-9]+)?)(?:/[0-9]+)?)*(?:\\s+(?:\\*|[0-9]+(?:-[0-9]+)?)(?:/[0-9]+)?(?:,(?:\\*|[0-9]+(?:-[0-9]+)?)(?:/[0-9]+)?)){4}$", "description": "Five-field numeric cron expression in the host's local time zone; field ranges are checked at runtime." },
+				"targetIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" }, "description": "When present, seeds the initial schedule. The form selection is saved locally and reused by scheduled runs." },
+				"dryRun": { "type": "boolean", "default": true, "description": "Keep true to preview. Set false only after reviewing the target IDs and schedule." }
+			}
+		}
+	}
+}

@@ -1,0 +1,49 @@
+{
+	"releases": [
+		{
+			"main": 2,
+			"minor": 2,
+			"revision": 0,
+			"date": "2026-10-13 10:00",
+			"beta": false,
+			"info": [
+				"The single NAS backup task form now enables or disables the recurring schedule and saves its selected targets.<context=\"release info\"/>",
+				"Scheduled runs reuse the same task and saved targets without opening the form; API 0.8.0 provides the per-run trigger context.<context=\"release info\"/>"
+			]
+		},
+		{
+			"main": 2,
+			"minor": 0,
+			"revision": 0,
+			"date": "2026-10-11 00:00",
+			"beta": false,
+			"info": [
+				"Changed the default to a fixed filtered project copy; timestamped copies and ZIP are configurable.<context=\"release info\"/>",
+				"Added verified replacement, target locks, ZIP read-back verification and mode migration documentation.<context=\"release info\"/>",
+				"Added dashboard keyboard shortcuts with explicit macOS bindings and usage documentation.<context=\"release info\"/>"
+			]
+		},
+		{
+			"main": 1,
+			"minor": 0,
+			"revision": 1,
+			"date": "2026-10-10 20:00",
+			"beta": false,
+			"info": [
+				"Added compact configurable task names with i18x date/time and change symbols.<context=\"release info\"/>",
+				"Added a distinct example project title and bundled microGulp logo.<context=\"release info\"/>"
+			]
+		},
+		{
+			"main": 1,
+			"minor": 0,
+			"revision": 0,
+			"date": "2026-10-10 16:30",
+			"beta": false,
+			"info": [
+				"Added configurable backup targets, dry run and verified per-target snapshots.<context=\"release info\"/>",
+				"Added standalone recipe version validation and package synchronization.<context=\"release info\"/>"
+			]
+		}
+	]
+}

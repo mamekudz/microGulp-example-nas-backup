@@ -1,0 +1,10 @@
+node_modules/
+.recipe-state/
+.microgulp/
+nas-backup.local.json
+AGENTS.md
+
+.env
+.env.*
+.npm-cache/
+references/oxyd/

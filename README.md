@@ -168,7 +168,7 @@ BACKUP_TO_NAS.µKeyBinding = { key: 'ctrl+shift+F3', mac: 'cmd+shift+F3' };
 ```
 
 <!-- blog-publication:start -->
-Artikel: [Deutsch](https://microgulp.dev/blogs/nas-backup)
+Artikel: [Deutsch](https://microgulp.dev/de/blog/nas-backup/)
 
 Weitere Beispiele: [microGulp-Examples](https://github.com/mamekudz/microGulp-Examples).
 <!-- blog-publication:end -->
